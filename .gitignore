@@ -114,4 +114,4 @@ dmypy.json
 .pyre/
 
 data/
-big_meta_data/
+large_meta_data/

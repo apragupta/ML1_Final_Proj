@@ -11,9 +11,9 @@ def load_meta_data_from_dir(dir_name):
     cleaned_meta_data_file = os.path.join(sample_data_folder, 'cleaned_meta_data.csv')
     images_folder = os.path.join(sample_data_folder, 'images')
     image_captions = pd.read_csv(cleaned_meta_data_file, index_col='index')
-    image_captions.rename(
-        columns={'0': 'caption', '1': 'link', '2': 'objects', '3': 'mid', '4': 'object_confidence'},
-        inplace=True)
+#     image_captions.rename(
+#         columns={'0': 'caption', '1': 'link', '2': 'objects', '3': 'mid', '4': 'object_confidence'},
+#         inplace=True)
 
     return image_captions, images_folder
 
