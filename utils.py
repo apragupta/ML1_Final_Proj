@@ -5,22 +5,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from PIL import Image
-def load_meta_data_from_dir(dir_name):
+def load_meta_data_from_dir(dir_name, file_name ='meta_data'):
     """
     Loads meta data of dataset in given dir_name. It is assumed that all data is in the
-    data folder. Changes column names to meaningful names.
+    data folder. File name defaults to meta_df.
     :param dir_name:
-    :return: df, path: dataframe containing metadata and path to directory holding the images
+    :return: df, img_path, meta_path: dataframe containing metadata, path to directory holding the images
+    and path to meta data file
     """
+        
+        
     sample_data_folder = os.path.join('data', dir_name)
-    cleaned_meta_data_file = os.path.join(sample_data_folder, 'meta_data')
+    cleaned_meta_data_file = os.path.join(sample_data_folder, file_name)
     images_folder = os.path.join(sample_data_folder, 'images')
     image_captions = pd.read_csv(cleaned_meta_data_file)
-#     image_captions.rename(
-#         columns={'0': 'caption', '1': 'link', '2': 'objects', '3': 'mid', '4': 'object_confidence'},
-#         inplace=True)
 
-    return image_captions, images_folder
+    return image_captions, images_folder, cleaned_meta_data_file
 
 #load a few sample images with captions
 def display_samples(meta_df, num_samples=5, seed = 0):
@@ -43,10 +43,10 @@ def display_samples(meta_df, num_samples=5, seed = 0):
                          
         plt.xticks([])
         plt.yticks([])
-        ax.imshow(image) 
-        ax.set_title(caption)
+        ax.imshow(image)        
         ax = fig.add_subplot(122)
         ax.text(0.1, 0.5, obj_str, horizontalalignment='left',verticalalignment='center')
+        plt.suptitle(caption)
         plt.xticks([])
         plt.yticks([])
         plt.show()
